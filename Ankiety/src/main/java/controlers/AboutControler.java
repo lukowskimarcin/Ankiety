@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 @Scope("prototype")
 @FXMLView(value="/fxml/About.fxml", bundle="/bundle/messages")
 public class AboutControler extends AbstractSeparateView {
+	
 	@FXML
     private Button bOk;
 
