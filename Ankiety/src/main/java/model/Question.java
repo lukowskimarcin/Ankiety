@@ -61,7 +61,6 @@ public class Question implements Cloneable {
 	
 	@Override
 	public Question clone() throws CloneNotSupportedException {
-		
 		Question copy = new Question();
 		
 		if(getQuestion()!=null)
