@@ -1,5 +1,9 @@
 package model;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -24,7 +28,16 @@ public class Question implements Cloneable {
 	 */
 	private QuestionType type;
 
+	/**
+	 * Czy wymagane
+	 */
 	private BooleanProperty required = new SimpleBooleanProperty();
+	
+	
+	/**
+	 * Opcje mozliwe do wybrania
+	 */
+	private List<StringProperty> options = new ArrayList<>();
 	
 	
 	public StringProperty questionProperty() {
@@ -59,6 +72,28 @@ public class Question implements Cloneable {
 		this.required.set(question);
 	}
 	
+	
+	public List<StringProperty> optionsProperty() {
+		return options;
+	}
+
+	public final List<String> getOptions() {
+		List<String> tmp = new ArrayList<>();
+		for(StringProperty sp : options) {
+			tmp.add(sp.get());
+		}
+		
+		return tmp;
+	}
+
+	public final void setOptions(List<String> list) {
+		options.clear();
+		for(String s : list) {
+			options.add(new SimpleStringProperty(s));
+		}
+	}
+	
+	
 	@Override
 	public Question clone() throws CloneNotSupportedException {
 		Question copy = new Question();
@@ -70,6 +105,15 @@ public class Question implements Cloneable {
 		
 		if(getRequired()!=null)
 			copy.setRequired(new Boolean(getRequired()));
+		
+		
+		if(getOptions()!=null) {
+			List<String> tmp = new ArrayList<>();
+			for(String s : getOptions()){
+				tmp.add(new String(s));
+			}
+			copy.setOptions(tmp);
+		}
 		
 		return copy;
 	}
