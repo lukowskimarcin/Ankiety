@@ -88,6 +88,23 @@ public class QuestionTest {
 		assertEquals("opcja 1", q2.getOptions().get(0));
 		assertNotEquals("opcja 2", q2.getOptions().get(1));
 	}
+	
+	@Test
+	public void testCloneAddOptions() throws CloneNotSupportedException {
+		Question q1 = new Question();
+		List<String> list = new ArrayList<>();
+		list.add("opcja 1");
+		list.add("opcja 2");
+		q1.setOptions(list);
+
+		Question q2 = q1.clone();
+		q2.getOptions().add("opcja 3");
+		
+		assertEquals(2, q1.getOptions().size());
+		assertEquals(3, q2.getOptions().size());
+		 
+		 
+	}
 
 
 }

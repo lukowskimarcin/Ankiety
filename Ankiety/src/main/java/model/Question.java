@@ -8,6 +8,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.enums.QuestionType;
 
 /**
@@ -37,7 +39,7 @@ public class Question implements Cloneable {
 	/**
 	 * Opcje mozliwe do wybrania
 	 */
-	private List<StringProperty> options = new ArrayList<>();
+	private ObservableList<String> options = FXCollections.observableList(new ArrayList<>());
 	
 	
 	public StringProperty questionProperty() {
@@ -73,24 +75,13 @@ public class Question implements Cloneable {
 	}
 	
 	
-	public List<StringProperty> optionsProperty() {
+	public final ObservableList<String> getOptions() {
 		return options;
 	}
-
-	public final List<String> getOptions() {
-		List<String> tmp = new ArrayList<>();
-		for(StringProperty sp : options) {
-			tmp.add(sp.get());
-		}
-		
-		return tmp;
-	}
-
+	
 	public final void setOptions(List<String> list) {
 		options.clear();
-		for(String s : list) {
-			options.add(new SimpleStringProperty(s));
-		}
+		options.addAll(list);
 	}
 	
 	
@@ -106,14 +97,12 @@ public class Question implements Cloneable {
 		if(getRequired()!=null)
 			copy.setRequired(new Boolean(getRequired()));
 		
-		
-		if(getOptions()!=null) {
-			List<String> tmp = new ArrayList<>();
-			for(String s : getOptions()){
-				tmp.add(new String(s));
-			}
-			copy.setOptions(tmp);
+		List<String> copyList = new ArrayList<>();
+		for(String s : getOptions()) {
+			copyList.add(s);
 		}
+	 
+		copy.setOptions(copyList);
 		
 		return copy;
 	}
