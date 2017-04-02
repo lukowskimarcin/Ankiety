@@ -27,7 +27,6 @@ public class MainControler extends AbstractView {
 		BorderPane pane = (BorderPane)getView();
 		pane.setCenter(node.getView());
 		
-		 
 	}
 
 }

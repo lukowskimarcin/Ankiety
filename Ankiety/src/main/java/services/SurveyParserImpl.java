@@ -1,12 +1,10 @@
 package services;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import org.crawler.consumer.IConsumer;
-import org.crawler.imp.WebCrawler;
+import org.crawler.IWebCrawler;
+import org.crawler.imp.CrawlTask;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import model.Question;
@@ -14,16 +12,30 @@ import model.Question;
 public class SurveyParserImpl implements SurveyParser {
 	
 	@Autowired 
-	private WebCrawler crawler;
+	private IWebCrawler crawler;
 	
-	@Autowired 
-	private IConsumer consumer;
-	
+	public IWebCrawler getCrawler() {
+		return crawler;
+	}
 
-	public List<Question> parse(URL url) throws Exception {
-		List<Question> result = new ArrayList<Question>();
+	public void setCrawler(IWebCrawler crawler) {
+		this.crawler = crawler;
+	}
+	
+	public List<Question> parse(String url) {
+		List<Question> result = new ArrayList<>();
+		CrawlTask task = new GoogleFormsCrawlTask(url);
+		
+		crawler.addTask(task);
+		crawler.waitUntilFinish();
+		
+		for(CrawlTask t : crawler.getCompletePages()){
+			List<Question> list = (List<Question>)t.getData();
+			result.addAll(list);
+		}
 		
 		return result;
 	}
+
 
 }
