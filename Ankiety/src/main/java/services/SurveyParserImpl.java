@@ -24,14 +24,13 @@ public class SurveyParserImpl implements SurveyParser {
 	
 	public List<Question> parse(String url) {
 		List<Question> result = new ArrayList<>();
-		CrawlTask task = new GoogleFormsCrawlTask(url);
+		CrawlTask task = new GoogleFormsCrawlTask(url, result);
 		
 		crawler.addTask(task);
 		crawler.waitUntilFinish();
 		
-		for(CrawlTask t : crawler.getCompletePages()){
-			List<Question> list = (List<Question>)t.getData();
-			result.addAll(list);
+		for(CrawlTask t : crawler.getCompletePages()) {
+			t.process();
 		}
 		
 		return result;
