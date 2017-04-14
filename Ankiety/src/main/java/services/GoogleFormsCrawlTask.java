@@ -5,23 +5,34 @@ import org.crawler.imp.CrawlTask;
 
 import model.Question;
 
-
+/**
+ * Zadanie do parsowanie ankiety
+ * @author Marcin
+ *
+ */
 public class GoogleFormsCrawlTask extends CrawlTask {
 	private static final long serialVersionUID = 1L;
-	
-	public GoogleFormsCrawlTask(String url, List<Question> result) {
+	private List<Question> questions;
+
+	/**
+	 * 
+	 * @param url:	adres ankiety
+	 * @param questions:	lista do której zostaną zapisane znalezione pytania
+	 */
+	public GoogleFormsCrawlTask(String url, List<Question> questions) {
 		super(url);
+		this.questions = questions;
 	}
-
-	@Override
-	public void process() {
-
-	}
+	 
 
 	@Override
 	public void parse() throws Exception {
-		// TODO Auto-generated method stub
 
 	}
+	
+	public final List<Question> getQuestions(){
+		return questions;
+	}
+	
 
 }

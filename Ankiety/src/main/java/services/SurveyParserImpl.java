@@ -13,11 +13,7 @@ public class SurveyParserImpl implements SurveyParser {
 	
 	@Autowired 
 	private IWebCrawler crawler;
-	
-	public IWebCrawler getCrawler() {
-		return crawler;
-	}
-
+	 
 	public void setCrawler(IWebCrawler crawler) {
 		this.crawler = crawler;
 	}
@@ -28,11 +24,6 @@ public class SurveyParserImpl implements SurveyParser {
 		
 		crawler.addTask(task);
 		crawler.waitUntilFinish();
-		
-		for(CrawlTask t : crawler.getCompletePages()) {
-			t.process();
-		}
-		
 		return result;
 	}
 
