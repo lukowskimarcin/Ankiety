@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import javafx.scene.paint.Color;
 import model.Question;
-import model.enums.QuestionType;
+import model.QuestionType;
 
 public class QuestionTest {
 

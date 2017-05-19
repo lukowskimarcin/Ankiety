@@ -12,7 +12,6 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
-import model.enums.QuestionType;
 
 /**
  * Klasa reprezentująca pojedyńcze pytanie z ankiety
