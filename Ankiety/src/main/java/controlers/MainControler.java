@@ -9,7 +9,7 @@ import fxbase.AbstractView;
 import fxbase.FXMLView;
 import javafx.scene.layout.BorderPane;
 
-@FXMLView(value="/fxml/Main.fxml", bundle="/bundle/messages")
+@FXMLView(fxml="/fxml/Main.fxml", bundle="/bundle/messages")
 public class MainControler extends AbstractView {
 	
 	@Autowired

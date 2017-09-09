@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 
-@FXMLView(value = "/fxml/Menu.fxml", bundle = "/bundle/messages")
+@FXMLView(fxml = "/fxml/Menu.fxml", bundle = "/bundle/messages")
 public class MenuControler extends AbstractView {
 	
 	@Autowired
